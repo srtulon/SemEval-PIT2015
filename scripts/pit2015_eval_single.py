@@ -17,7 +17,7 @@
 #    Pearson|maxF1|mPrecision|mRecall    are for degreed outputs
 #
 
-from __future__ import division
+
 import sys
 import re
 import math
@@ -137,7 +137,7 @@ def EvalSingleSystem(testlabelfile, outputfile):
 	R_maxF1 = 0
     
     # rank system outputs according to the probabilities predicted
-	sortedindex = sorted(range(len(sysscores)), key = sysscores.__getitem__)   
+	sortedindex = sorted(list(range(len(sysscores))), key = sysscores.__getitem__)   
 	sortedindex.reverse() 
 
 	truepos  = 0
@@ -181,28 +181,30 @@ def EvalSingleSystem(testlabelfile, outputfile):
 
 def PITEval(labelfile, outfile):
 	if CheckFileFormat(labelfile, outfile):
+     	print("hi")
 		return EvalSingleSystem(labelfile, outfile)
+
 	else:
-		print "System output file format error: " + outputfile
+		print(("System output file format error: " + outputfile))
 
 	return
 
-# Evaluate all system outputs 
-#
-# if __name__ == "__main__":
-# 
-# 	mypath = "./systemoutputs/"
-# 	testlabelfile = "./data/test.label"
-# 	onlyfiles = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
-# 	for filename in onlyfiles:
-# 		if re.match(r".*\.output$", filename):
-# 			outputfile = mypath + "/" + filename
-# 			print PITEval(testlabelfile, outputfile)
+#Evaluate all system outputs 
 
-# Evaluate a single system output
 if __name__ == "__main__":
 
-	testlabelfile = sys.argv[1]
-	outputfile    = sys.argv[2]
+	mypath = "./systemoutputs/"
+	testlabelfile = "./data/test.label"
+	onlyfiles = [ f for f in listdir(mypath) if isfile(join(mypath,f)) ]
+	for filename in onlyfiles:
+		if re.match(r".*\.output$", filename) or True:
+			outputfile = mypath + "/" + filename
+			print(PITEval(testlabelfile, outputfile))
+
+# #Evaluate a single system output
+# if __name__ == "__main__":
+
+# 	testlabelfile = sys.argv[1]
+# 	outputfile    = sys.argv[2]
 	
-	print PITEval(testlabelfile, outputfile)
+# 	print((PITEval(testlabelfile, outputfile)))

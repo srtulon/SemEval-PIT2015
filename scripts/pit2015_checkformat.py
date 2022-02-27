@@ -72,15 +72,15 @@ def CheckFormat(testdatafile, outputfile):
 
 	if not rfilename.match(outputfile):
 		anyerror = True
-		print "The name of the output file doesn't meet the requirements:"
-		print
-		print "    it must be named as PIT2015_XXXXX_dd_xxxxxx.output"
-		print "    XXXXX is your team name, must be 2-8 characters of English letters in uppercase or '-'"
-		print "    dd is the index of the runs, can only be 01 or 02"
-		print "    xxxxx is the name of this run, must be 2-10 characters of English letters in lowercase or digits"
-		print 
-		print "Sorry! The output file didn't pass the format check."
-		print
+		print("The name of the output file doesn't meet the requirements:")
+		print()
+		print("    it must be named as PIT2015_XXXXX_dd_xxxxxx.output")
+		print("    XXXXX is your team name, must be 2-8 characters of English letters in uppercase or '-'")
+		print("    dd is the index of the runs, can only be 01 or 02")
+		print("    xxxxx is the name of this run, must be 2-10 characters of English letters in lowercase or digits")
+		print() 
+		print("Sorry! The output file didn't pass the format check.")
+		print()
 		return anyerror
 
 	### check the content of the output file ###
@@ -105,30 +105,30 @@ def CheckFormat(testdatafile, outputfile):
 				noline += 1
 				if ocolumns[0] != "true" and ocolumns[0] != "false":
 					anyerror = True
-					print "Error in line " + str(oline_count) + " (1st column must be \"true\" or \"false\")"
+					print("Error in line " + str(oline_count) + " (1st column must be \"true\" or \"false\")")
 				if not rdecimal.match(ocolumns[1]):
 					anyerror = True
-					print "Error in line " + str(oline_count) + " (2nd column must be a decimal in X.XXXX format)"
+					print("Error in line " + str(oline_count) + " (2nd column must be a decimal in X.XXXX format)")
 				else:
 					score = float(ocolumns[1])
 					if score < 0 or score > 1:
 						anyerror = True
-						print "Error in line " + str(oline_count) + " (2nd column must be a decimal between 0 and 1)"
+						print("Error in line " + str(oline_count) + " (2nd column must be a decimal between 0 and 1)")
 
 			else:
 				anyerror = True			
-				print "Error in line " + str(oline_count) + " (must have 2 columns seperated by tab)"
+				print("Error in line " + str(oline_count) + " (must have 2 columns seperated by tab)")
 			
 	if ntline != noline:
 		anyerror = True
-		print "Error (the total number of lines in the output file does not match with test data)"
+		print("Error (the total number of lines in the output file does not match with test data)")
 	
-	print
+	print()
 	if anyerror == False:
-		print "Congratulations! The output file has passed the format check."
+		print("Congratulations! The output file has passed the format check.")
 	else:
-		print "Sorry! The output file didn't pass the format check."
-	print
+		print("Sorry! The output file didn't pass the format check.")
+	print()
 
 	return anyerror	
 

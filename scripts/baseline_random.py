@@ -12,7 +12,7 @@ import random
 if __name__ == "__main__":
 
 	testfilename = "../data/test.unlabelled.data"
-	outfilename  = "./PIT2015_BASELINE_01_random.output"
+	outfilename  = "./systemoutputs/PIT2015_BASELINE_01_random.output"
 	
 	ntline = 0
 	with open(testfilename) as tf:
